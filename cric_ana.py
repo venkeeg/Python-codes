@@ -4,6 +4,23 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sn
 
+def init_scores() :
+    kohli_runs=0
+    kohli_bfaced=0
+    kohli_ON=''
+
+    dube_runs = 0
+    dube_bfaced = 0
+    dube_ON = ''
+
+    sundar_runs = 0
+    sundar_bfaced = 0
+    sundar_ON =''
+
+    saini_runs = 0
+    saini_bfaced = 0
+    saini_ON = ''
+
 cols = ['Result','Team Runs','Kohli Runs', 'Kohli bfaced', 'Kohli ON','S Dube Runs','S Dube bfaced',\
         'S Dube ON','W Sundar Runs','W Sundar bfaced','W Sundar ON','N Saini Runs','N Saini bfaced','N Saini ON']
 
@@ -18,21 +35,7 @@ pd.set_option('display.max_rows', 50)
 pd.set_option('display.max_columns',50)
 
 ##Set initial values
-kohli_runs=0
-kohli_bfaced=0
-kohli_ON=''
-
-dube_runs = 0
-dube_bfaced = 0
-dube_ON = ''
-
-sundar_runs = 0
-sundar_bfaced = 0
-sundar_ON =''
-
-saini_runs = 0
-saini_bfaced = 0
-saini_ON = ''
+init_scores()
 
 print("Simulation in progress...")
 for i in range(200):
@@ -65,22 +68,8 @@ for i in range(200):
     
 
     #Clear variables after every simulation
-    kohli_runs=0
-    kohli_bfaced=0
-    kohli_ON=''
-
-    dube_runs = 0
-    dube_bfaced = 0
-    dube_ON = ''
-
-    sundar_runs = 0
-    sundar_bfaced = 0
-    sundar_ON =''
-
-    saini_runs = 0
-    saini_bfaced = 0
-    saini_ON = ''
-
+    init_scores()
+    
 print("Simulation complete.Data stored in pandas dataframe #stats#")
 
 
