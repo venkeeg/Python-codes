@@ -1,0 +1,6 @@
+This is a cricket T20 game situation simulation developed as a part of a hiring challenge. 
+
+Last 4 overs of a T20 cric match.There are 3 wickets in hand,40 runs to win. Percentage of 4s,6s,1s,2s,5s,0s and OUTs for each player is given as a distribution. Runs are generated as random numbers from these distributions. Run-outs not allowed for the sake of simplicity.
+
+Good fun observing different outcomes for multiple simulations. Additionally, I had added an analytics aspect to the game by simulating hundreds of simulations and observing trends and insights.
+
