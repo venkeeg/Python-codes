@@ -31,6 +31,9 @@ pings['date']=pings['timestamp'].dt.date
 #Add time column from timestamp
 pings['time']=pings['timestamp'].dt.time
 
+#Convert time column to datetime format
+pings['time']= pd.to_datetime(pings['time'].astype(str))
+
 #Drop timestamp column
 pings=pings.drop(columns=['timestamp'])
 
@@ -47,19 +50,30 @@ dur = datetime.timedelta(0)
 #Function to calculate duration spent by customer on app per day
 def compdur(df):
     global dur
-    pre = str(df['time'][0:1])
-    pre=pre.split('\n')
-    pre=pre[0].split()
-    pre=pre[1]
-    for i,r in df.iterrows():
-        x = str(r['time'])	
-        dif = ( datetime.datetime.strptime(x,"%H:%M:%S") - datetime.datetime.strptime(pre,"%H:%M:%S"))
-        #If difference betn successive values is more than 5 mins,
-        #do not include that difference. The current ping will be 
-        #treated as new login.
-        if dif < datetime.timedelta(0,300):
-           dur = dur + dif
-        pre = str(r['time'])
+
+    #Calculate successive differences of time column and store as new column
+    df['diff'] = df['time'].transform(lambda x: x.diff())
+
+    #Drop rows where difference is greater than 300 seconds 
+    df.drop(df[df['diff'] > datetime.timedelta(0,300)].index, inplace = True)
+    
+    #Sum the differences in difference column of this data frame
+    dur = df['diff'].sum() 
+
+    
+##    pre = str(df['time'][0:1])
+##    pre=pre.split('\n')
+##    pre=pre[0].split()
+##    pre=pre[1]
+##    for i,r in df.iterrows():
+##        x = str(r['time'])	
+##        dif = ( datetime.datetime.strptime(x,"%H:%M:%S") - datetime.datetime.strptime(pre,"%H:%M:%S"))
+##        #If difference betn successive values is more than 5 mins,
+##        #do not include that difference. The current ping will be 
+##        #treated as new login.
+##        if dif < datetime.timedelta(0,300):
+##           dur = dur + dif
+##        pre = str(r['time'])
     return dur
 
 print("Computing duration spent on App by Customer by day>>>>>")
@@ -85,8 +99,6 @@ for i,g in grouped:
         res = res/3600
         new_pings = new_pings.append({'id':int(cust_id),'date':date,'dura':res},ignore_index=True)
 
-print("Dataframe with customer duration per day")
-print(new_pings.describe)
 
 new_pings['id']=pd.to_numeric(new_pings['id'])
 new_pings['date'] = pd.to_datetime(new_pings['date'])
@@ -94,15 +106,18 @@ new_pings['date'] = pd.to_datetime(new_pings['date'])
 #Extracting day from date column and creating a new 'day' column
 new_pings['day']=new_pings['date'].dt.day_name()
 
+print("Dataframe with customer duration per day")
+print(new_pings.describe)
+
 #Save the new_pings dataframe as csv file in drive
 #the previous section takes a very long time.
 
-new_pings.to_csv('/content/drive/My Drive/bw/new_pings.csv',index=False)
+#new_pings.to_csv('/content/drive/My Drive/bw/new_pings.csv',index=False)
 
 #Temporary section to read new_pings.csv from google drive 
 #Not necessary to run this in sequence. Further steps can be started from this section
 #in case the runtime disconnects.
-new_pings = pd.read_csv('/content/drive/My Drive/bw/new_pings.csv')
+#new_pings = pd.read_csv('/content/drive/My Drive/bw/new_pings.csv')
 
 #Read Customer file from Google drive
 cust = pd.read_csv('/content/drive/My Drive/bw/customers.csv')
