@@ -12,9 +12,11 @@ This repository contains python programs and their output as a part of my learni
    GitHub link to this task : https://github.com/venkeeg/Python-codes/blob/master/cipla.ipynb
       
 
+2. Time Series forecasting of 'weekly dispatch count' for 2 different Product Types from 10 different warehouses to retail stores, as a part Tredence Data Science    Hackathon.
+   
+   Github link to this task : https://github.com/venkeeg/Python-codes/blob/master/Tredence.ipynb
 
-
-2. A cricket game simulation program as a part of coding test on Geektrust. Though the initial problem statement was to simulate a cricket game situation, I had extended the scope by writing another program to simulate the game many number of times. I collected data from the outcomes of these games and performed visualizations to draw insights. 
+3. A cricket game simulation program as a part of coding test on Geektrust. Though the initial problem statement was to simulate a cricket game situation, I had extended the scope by writing another program to simulate the game many number of times. I collected data from the outcomes of these games and performed visualizations to draw insights. 
 
    GitHub link to the cricket game simulation : https://github.com/venkeeg/Python-codes/blob/master/Cric_Simul.ipynb
 
@@ -22,7 +24,7 @@ This repository contains python programs and their output as a part of my learni
 
 
 
-3. Visualizing decision boundaries of different machine learning algorithms for classifying data belonging to 2 different classes. I did this out of self interest. The data was arranged in different ways and the corresponding decision boundaries of machine learning algorithms was observed.
+4. Visualizing decision boundaries of different machine learning algorithms for classifying data belonging to 2 different classes. I did this out of self interest. The data was arranged in different ways and the corresponding decision boundaries of machine learning algorithms was observed.
 
    GitHub link : https://github.com/venkeeg/Python-codes/wiki/Visualization-of-decision-boundaries
       
